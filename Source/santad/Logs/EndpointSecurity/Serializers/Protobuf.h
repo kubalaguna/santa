@@ -65,6 +65,7 @@ class Protobuf : public Serializer {
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedAuthenticationTouchID &) override;
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedAuthenticationToken &) override;
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedAuthenticationAutoUnlock &) override;
+  std::vector<uint8_t> SerializeMessage(const santa::EnrichedLaunchItem &) override;
 #endif  // HAVE_MACOS_13
 #if HAVE_MACOS_15
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedGatekeeperOverride &) override;
@@ -93,6 +94,9 @@ class Protobuf : public Serializer {
                                                     struct timespec processed_time);
 
   std::vector<uint8_t> FinalizeProto(::santa::pb::v1::SantaMessage *santa_msg);
+
+  std::vector<uint8_t> SerializeMessageLaunchItemAdd(const santa::EnrichedLaunchItem &);
+  std::vector<uint8_t> SerializeMessageLaunchItemRemove(const santa::EnrichedLaunchItem &);
 
   std::shared_ptr<santa::EndpointSecurityAPI> esapi_;
   // Toggle for transforming protobuf output to its JSON form.

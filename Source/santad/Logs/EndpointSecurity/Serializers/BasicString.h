@@ -65,6 +65,7 @@ class BasicString : public Serializer {
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedAuthenticationTouchID &) override;
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedAuthenticationToken &) override;
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedAuthenticationAutoUnlock &) override;
+  std::vector<uint8_t> SerializeMessage(const santa::EnrichedLaunchItem &) override;
 #endif  // HAVE_MACOS_13
 #if HAVE_MACOS_15
   std::vector<uint8_t> SerializeMessage(const santa::EnrichedGatekeeperOverride &) override;
@@ -85,6 +86,9 @@ class BasicString : public Serializer {
  private:
   std::string CreateDefaultString(size_t reserved_size = 512);
   std::vector<uint8_t> FinalizeString(std::string &str);
+
+  std::vector<uint8_t> SerializeMessageLaunchItemAdd(const santa::EnrichedLaunchItem &);
+  std::vector<uint8_t> SerializeMessageLaunchItemRemove(const santa::EnrichedLaunchItem &);
 
   std::shared_ptr<santa::EndpointSecurityAPI> esapi_;
   bool prefix_time_name_;

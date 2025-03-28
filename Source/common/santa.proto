@@ -288,6 +288,7 @@ message Execution {
     DECISION_UNKNOWN = 0;
     DECISION_ALLOW = 1;
     DECISION_DENY = 2;
+    DECISION_ALLOW_COMPILER = 3;
   }
   optional Decision decision = 9;
 
@@ -296,7 +297,6 @@ message Execution {
     REASON_UNKNOWN = 0;
     REASON_BINARY = 1;
     REASON_CERT = 2;
-    REASON_COMPILER = 3;
     REASON_PENDING_TRANSITIVE = 5;
     REASON_SCOPE = 6;
     REASON_TEAM_ID = 7;
@@ -1003,10 +1003,10 @@ message LaunchItem {
   optional UserInfo item_user = 10;
 
   // Location of the launch item
-  optional string item_url = 11;
+  optional string item_path = 11;
 
-  // URL of the app the launch item is attributed to
-  optional string app_url = 12;
+  // Path of the app the launch item is attributed to
+  optional string app_path = 12;
 
   // If available, associated executable path from a launch item's plist
   optional string executable_path = 13;
